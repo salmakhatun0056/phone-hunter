@@ -1,4 +1,5 @@
 const main = document.getElementById('main')
+const detail = document.getElementById('detail')
 
 const searchClick = () => {
     main.innerHTML = ''
@@ -40,16 +41,16 @@ const phoneDetail = (id) => {
 const setDetail = (info) => {
     console.log(info)
     const div = document.createElement('div')
-    console.log(div)
+    main.innerHTML = ''
     div.innerHTML = `
     <div class="card" style="width: 18rem;">
         <img src="${info.image}" class="card-img-top" alt="...">
         <div class="card-body">
-           <h5 class="card-title">${info.name}</h5>
-           <p class="card-text">${info.brand}</p>
+           <p class="card-text">${info.releaseDate}</p>
+           <p class="card-text">Storage: ${info.mainFeatures.storage}</p>
+           <p class="card-text">DisplaySize: ${info.mainFeatures.displaySize}</p>
         </div>
     </div>
     `
-
-    main.appendChild(div)
+    detail.appendChild(div)
 }
