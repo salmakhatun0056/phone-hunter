@@ -56,10 +56,10 @@ const setDetail = (info) => {
 
     if (info.releaseDate == '' || info.releaseDate == null) {
         div.innerHTML = `
-        <div class="card mx-auto" style="width: 25rem;">
+        <div class="card mx-auto" style="width: 20rem;">
             <img src="${info.image}" class="card-img-top" alt="...">
             <div class="card-body">
-               <h5 id="noRelease" class="card-text text-success"><b>No release Date Found</b></h5>
+               <h5 id="noRelease" class="card-text text-success"><b>No Release Date Found</b></h5>
                <p class="card-text"><b>Storage: </b>${info.mainFeatures.storage}</p>
                <p class="card-text"><b>DisplaySize: </b>${info.mainFeatures.displaySize}</p>
                <p class="card-text"><b>Sensors: </b>${info.mainFeatures.sensors}</p>
@@ -71,7 +71,7 @@ const setDetail = (info) => {
     }
     else {
         div.innerHTML = `
-        <div class="card mx-auto" style="width: 25rem;">
+        <div class="card mx-auto" style="width: 20rem;">
             <img src="${info.image}" class="card-img-top" alt="...">
             <div class="card-body">
                <h5 id="noRelease" class="card-text">${info?.releaseDate}</h5>
