@@ -1,10 +1,11 @@
 const main = document.getElementById('main')
 const detail = document.getElementById('detail')
 const error = document.getElementById('error')
-
+// search box
 const searchClick = () => {
     main.innerHTML = ''
     error.innerText = ''
+    detail.innerHTML = ''
     const searchBox = document.getElementById('search-box')
     const searchBoxValue = searchBox.value
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchBoxValue}`
@@ -20,10 +21,10 @@ const searchClick = () => {
             }
         })
 }
+// phone detail
 const showPhoneDetails = (phones) => {
     const first20Phones = phones.slice(0, 20)
     first20Phones.forEach(phone => {
-        console.log(phone)
         const div = document.createElement('div')
         div.classList.add('col-lg-4')
         div.classList.add('col-12')
@@ -48,22 +49,22 @@ const phoneDetail = (id) => {
         .then(res => res.json())
         .then(data => setDetail(data.data))
 }
-
 const setDetail = (info) => {
-    console.log(info)
     const div = document.createElement('div')
     detail.innerHTML = ''
-
     if (info.releaseDate == '' || info.releaseDate == null) {
         div.innerHTML = `
-        <div class="card mx-auto" style="width: 20rem;">
+        <div class="card mx-auto" style="width: 25rem;">
             <img src="${info.image}" class="card-img-top" alt="...">
             <div class="card-body">
-               <h5 id="noRelease" class="card-text text-success"><b>No Release Date Found</b></h5>
-               <p class="card-text"><b>Storage: </b>${info.mainFeatures.storage}</p>
+               <h5 id="noRelease" class="card-text text-success text-center"><b>No Release Date Found</b></h5>
+               <h4>Main Features</h4>
+               <p class="card-text"><b>ChipSet: </b>${info.mainFeatures.chipSet}</p>
                <p class="card-text"><b>DisplaySize: </b>${info.mainFeatures.displaySize}</p>
+               <p class="card-text"><b>Memory: </b>${info.mainFeatures.memory}</p>
                <p class="card-text"><b>Sensors: </b>${info.mainFeatures.sensors}</p>
-               <p class="card-text"><b>Others: WLAN: </b>${info?.others?.WLAN}, Bluetooth: ${info?.others?.Bluetooth}</p>
+               <p class="card-text"><b>Storage: </b>${info.mainFeatures.storage}</p>
+               <p class="card-text"><b>Others: </b> <b>Bluetooth: </b>${info?.others?.Bluetooth} <b>GPS: </b>${info?.others?.GPS} <b>NFC: </b>${info?.others?.NFC} <b>Radio: </b>${info?.others?.Radio}  <b>USB: </b>${info?.others?.USB} <b> WLAN: </b>${info?.others?.WLAN}, Bluetooth: ${info?.others?.Bluetooth}</p>
             </div>
         </div>
         `
@@ -71,13 +72,17 @@ const setDetail = (info) => {
     }
     else {
         div.innerHTML = `
-        <div class="card mx-auto" style="width: 20rem;">
+        <div class="card mx-auto" style="width: 25rem;">
             <img src="${info.image}" class="card-img-top" alt="...">
             <div class="card-body">
-               <h5 id="noRelease" class="card-text">${info?.releaseDate}</h5>
-               <p class="card-text"><b>Storage: </b> ${info.mainFeatures.storage}</p>
+               <h5 id="noRelease" class="card-text text-center">${info?.releaseDate}</h5>
+               <h4>Main Features</h4>
+               <p class="card-text"><b>ChipSet: </b> ${info.mainFeatures.chipSet}</p>
                <p class="card-text"><b>DisplaySize: </b>${info.mainFeatures.displaySize}</p>
-               <p class="card-text"><b>Others: WLAN: </b>${info?.others?.WLAN}, Bluetooth: ${info?.others?.Bluetooth}</p>
+               <p class="card-text"><b>Memory: </b>${info.mainFeatures.memory}</p>
+               <p class="card-text"><b>Sensors: </b>${info.mainFeatures.sensors}</p>
+               <p class="card-text"><b>Storage: </b> ${info.mainFeatures.storage}</p>
+               <p class="card-text"><b>Others: </b> <b>Bluetooth: </b>${info?.others?.Bluetooth} <b>GPS: </b>${info?.others?.GPS} <b>NFC: </b>${info?.others?.NFC} <b>Radio: </b>${info?.others?.Radio}  <b>USB: </b>${info?.others?.USB} <b> WLAN: </b>${info?.others?.WLAN}, Bluetooth: ${info?.others?.Bluetooth}</p>
             </div>
         </div>
         `
